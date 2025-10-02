@@ -1,25 +1,29 @@
 import random
 
-def pick_random_number (a,b):
-    return random.randint(a,b)
-
-
-a = 1
-b = 100
-secret = random.randint(a,b)
-print(secret)
-
 while True:
-    guess = random.randint(a,b)
-    print(guess)
-
-    if guess < secret:
-        a = guess + 1
-    
-    elif guess > secret:
-        b = guess - 1
-
+    try:
+        secret = int(input("Pick a number:"))
+    except ValueError:
+        print("Pick a valid number")
     else:
-        print("The Machine Won")
         break
 
+min = 1
+max = 100
+
+while True:
+    guess = (min + max) // 2
+    print(f"Guessed Number: {guess}")
+
+    user_input = input("Lower/Higher/Correct: ").lower()
+
+    match user_input:
+        case "lower":
+            max = guess - 1
+        case "higher":
+            min = guess + 1
+        case "correct":
+            print("Thank You For Playing")
+            break
+        case _:
+            print("Please Enter A Valid Input")
